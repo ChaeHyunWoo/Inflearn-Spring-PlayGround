@@ -11,6 +11,11 @@ package hello.core.member;
         -> ex) 외부(AppConfig) : 공연 기획자
     (3) MemberServiceImpl 은 이제부터 "의존 관계에 대한 고민은 외부"에 맡기도 오직 "실행에만 집중" 한다.
  */
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemberServiceImpl implements MemberService {
 
     // MemberServiceImpl 클래스에는 이제 추상화에만 의존한다. -> DIP 지킨다. -> MemberRepository에 대한 구체적인 내용은 모름 -> 생성자 DI
@@ -23,6 +28,12 @@ public class MemberServiceImpl implements MemberService {
         의존관계 주입 = 의존성 주입 같은말이다. -> 토비의 스프링에서는 의존관계 주입이라 작성됬지만, 대부분 번역본에는 의존성 주입이라 작성되어 있음
      */
 
+    /**
+     * @Component를 써서 자동으로 빈으로 등록되지만 의존 관계를 설정할 수 있는 방법이 없어져서 @Autowired를 써서 자동으로 의존 관계를 주입해줘야 한다.
+     * 즉, @Component를 쓰면 @Autowired가 필요하다.
+     * @Autowired은 Type에 맞는 빈을 가져와 주입해준다. -> ac.getBean(MemberRepository.class) 처럼 동작한다.
+     */
+    @Autowired
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
