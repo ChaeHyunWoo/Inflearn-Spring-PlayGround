@@ -1,5 +1,6 @@
 package hello.core.order;
 
+import hello.core.annotation.MainDiscountPolicy;
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
 import hello.core.discount.RateDiscountPolicy;
@@ -25,7 +26,7 @@ public class OrderServiceImpl implements OrderService {
      * @Autowired 는 타입(Type)으로 조회한다. = ac.getBean(class적고.class) 이거와 유사함
      */
     @Autowired //-> 생성자가 1개라면 @Autowired 생략 가능하다.
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
         // System.out.println("[1번째 호출] discountPolicy = " + discountPolicy);
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
