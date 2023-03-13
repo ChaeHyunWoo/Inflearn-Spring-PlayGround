@@ -20,6 +20,10 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
+    // Spring Boot 3.x부터는
+    // implementation 'jakarta.inject:jakarta.inject-api:2.0.1' // 이거를 써야함
+    implementation 'javax.inject:javax.inject:1'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
